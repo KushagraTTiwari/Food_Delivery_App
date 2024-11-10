@@ -5,13 +5,13 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../componenets/Navbar'
+import { useCart } from './CartContext';
 
 export default function Cart() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate()
     const [items, setItems] = useState([]);
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState(null);
+    const { updateCartLength } = useCart();
     const userId = localStorage.getItem('userId')
 
     useEffect(() => {
@@ -20,25 +20,16 @@ export default function Cart() {
                 const response = await axios.get(`http://localhost:5000/cart/${userId}`);
                 // console.log(response)
                 setItems(response.data.items);
-                // localStorage.setItem('cartitem',response.data.items.length)
+                updateCartLength(response.data.items.length)
             } catch (err) {
                 console.error(err);
             } 
         };
 
         fetchCartItems();
-    }, []);
+    }, [items]);
 
-    // if (loading) return <p>Loading cart items...</p>;
-    // if (error) return <p>{error}</p>;
-    // if (items.length === 0) {
-    //     return (
-    //         <div>
-    //             <div className='m-5 w-100 text-center fs-3'>The Cart is Empty</div>
-    //         </div>
-    //     )
-    // }
-    // console.log('items is -> ', items)
+    
     let totalPrice = items.reduce((total, food) => total + food.price, 0);
 
 
@@ -47,6 +38,7 @@ export default function Cart() {
         try {
             await axios.delete(`http://localhost:5000/cart/${userId}/item/${itemId}`);
             setItems(items.filter(item => item.itemId !== itemId)); 
+            updateCartLength(items.length)
             enqueueSnackbar("Item deleted from cart", {variant:"success"})
         } catch (error) {
             console.error('Error removing item from cart:', error);

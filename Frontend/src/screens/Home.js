@@ -87,7 +87,7 @@ export default function Home() {
                 </div>
               </div>
             );
-          }) : <div>Data not found</div>
+          }) : <div className='d-flex justify-content-center align-items-center m-3'><h3>Data Not Found</h3></div>
         }
       </div>
       <Footer />

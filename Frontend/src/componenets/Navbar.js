@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
+import { useCart } from './CartContext';
 
 export default function Navbar() {
+  const {cartLength} = useCart();
   const navigate = useNavigate();
 
   const navigateCart = () => {
@@ -46,7 +48,7 @@ export default function Navbar() {
               <div>
                 <div className='btn bg-white text-success mx-2' onClick={navigateCart}>
                   My Cart{" "}
-                  <Badge pill bg='danger'></Badge>
+                  <Badge pill bg='danger'>{cartLength}</Badge>
                 </div>
                 <div className='btn bg-white text-danger mx-2' onClick={handleLogout}>Logout</div>
               </div>

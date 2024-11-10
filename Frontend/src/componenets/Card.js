@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import axios from "axios";
 import { enqueueSnackbar, useSnackbar } from 'notistack';
+import { useCart } from './CartContext';
 
 export default function Card(props) {
+  const {cartLength, updateCartLength} = useCart()
   const { enqueueSnackbar } = useSnackbar()
   let priceRef = useRef();
 
@@ -21,9 +23,9 @@ const handleAddToCart = async () => {
       const userId = decodedToken.id;
       localStorage.setItem('userId',userId)
       const itemData = {
-        userId: userId, // Replace with actual user ID if available
+        userId: userId,
         item: {
-          itemId: props.foodItem._id, // Ensure `id` exists in the `foodItem` prop
+          itemId: props.foodItem._id, 
           name: props.foodItem.name,
           quantity: qty,
           price: finalPrice,
@@ -33,6 +35,7 @@ const handleAddToCart = async () => {
   
       try {
         const response = await axios.post('http://localhost:5000/cart/add', {userId:itemData.userId, item:itemData.item});
+        updateCartLength(cartLength+1)
         if (response.status === 200) {
           enqueueSnackbar(`${itemData.item.name} has been added to your cart!`, {variant: "success"})
         } else {

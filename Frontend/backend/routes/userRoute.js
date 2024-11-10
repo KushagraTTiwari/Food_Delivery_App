@@ -14,7 +14,7 @@ router.post('/signup', async(req, res)=> {
         // // console.log('payload is : ',payload)
         // const token = generateToken(payload)
         // console.log('Registered Successfully, why')
-        res.status(200).json({message: "Registered Successfully", response: response, token: token})
+        res.status(200).json({message: "Registered Successfully", response: response})
     } catch (error) {
         res.status(500).json({message: "Email is already registered, try with new email"})
     }

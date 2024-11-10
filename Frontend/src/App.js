@@ -10,11 +10,13 @@ import Signup from './screens/Signup.js';
 import { SnackbarProvider } from 'notistack';
 import ReactDOM from 'react-dom';
 // import { CartProvider } from './componenets/ContextReducer.js';
+import { CartProvider } from './componenets/CartContext.js';
 import Cart from './componenets/Cart.js';
 import Checkout from './screens/Checkout.js';
 
 function App() {
   return (
+    <CartProvider>
       <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
         <Router>
           <div>
@@ -28,6 +30,7 @@ function App() {
           </div>
         </Router>
       </SnackbarProvider>
+    </CartProvider>
   );
 }
 
