@@ -3,6 +3,7 @@ import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import Card from '../componenets/Card';
 import axios from "axios";
+import { config } from "../App";
 
 export default function Home() {
   // console.log('hello');
@@ -13,7 +14,7 @@ export default function Home() {
 
   const loadDataCat = async () => {
     try {
-      let responseCat = await axios.get(`http://localhost:5000/category`);
+      let responseCat = await axios.get(`${config.endpoint}/category`);
       // console.log("Categories:", responseCat.data);
       setFoodCat(responseCat.data);
     } catch (error) {
@@ -23,7 +24,7 @@ export default function Home() {
 
   const loadData = async () => {
     try {
-      let responseData = await axios.get('http://localhost:5000/data');
+      let responseData = await axios.get(`${config.endpoint}/data`);
       // console.log("Food Data:", responseData.data);
       setFoodData(responseData.data);
     } catch (error) {

@@ -6,6 +6,7 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../componenets/Navbar'
 import { useCart } from './CartContext';
+import { config } from "../App";
 
 export default function Cart() {
     const { enqueueSnackbar } = useSnackbar();
@@ -17,7 +18,7 @@ export default function Cart() {
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/cart/${userId}`);
+                const response = await axios.get(`${config.endpoint}/cart/${userId}`);
                 // console.log(response)
                 setItems(response.data.items);
                 updateCartLength(response.data.items.length)
@@ -36,7 +37,7 @@ export default function Cart() {
 
     const removeItem = async (itemId) => {
         try {
-            await axios.delete(`http://localhost:5000/cart/${userId}/item/${itemId}`);
+            await axios.delete(`${config.endpoint}/cart/${userId}/item/${itemId}`);
             setItems(items.filter(item => item.itemId !== itemId)); 
             updateCartLength(items.length)
             enqueueSnackbar("Item deleted from cart", {variant:"success"})
@@ -47,7 +48,7 @@ export default function Cart() {
 
     const checkoutPage = async () => {
         try {
-            await axios.delete(`http://localhost:5000/cart/remove/${userId}`);
+            await axios.delete(`${config.endpoint}/cart/remove/${userId}`);
             navigate('/checkout')
         } catch (error) {
             console.log('Error removing all items from cart:', error)

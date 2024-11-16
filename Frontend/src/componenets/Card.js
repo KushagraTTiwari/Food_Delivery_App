@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import axios from "axios";
 import { enqueueSnackbar, useSnackbar } from 'notistack';
 import { useCart } from './CartContext';
+import { config } from "../App";
 
 export default function Card(props) {
   const {cartLength, updateCartLength} = useCart()
@@ -34,7 +35,7 @@ const handleAddToCart = async () => {
       };
   
       try {
-        const response = await axios.post('http://localhost:5000/cart/add', {userId:itemData.userId, item:itemData.item});
+        const response = await axios.post(`${config.endpoint}/cart/add`, {userId:itemData.userId, item:itemData.item});
         updateCartLength(cartLength+1)
         if (response.status === 200) {
           enqueueSnackbar(`${itemData.item.name} has been added to your cart!`, {variant: "success"})

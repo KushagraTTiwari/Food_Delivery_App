@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSnackbar } from "notistack";
 import axios from "axios";
 import '../../src/index.css';
-
+import { config } from "../App";
 export default function Login() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function Login() {
         const valid = validateInput(formData)
         if (valid) {
             try {
-                let res = await axios.post(`http://localhost:5000/api/login`, {
+                let res = await axios.post(`${config.endpoint}/api/login`, {
                     email: formData.email,
                     password: formData.password
                 })

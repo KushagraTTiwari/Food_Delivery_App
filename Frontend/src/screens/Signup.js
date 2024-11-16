@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSnackbar } from "notistack";
 import axios from "axios";
 import '../../src/index.css';
+import { config } from "../App";
 
 export default function Signup() {
     const { enqueueSnackbar } = useSnackbar();
@@ -23,7 +24,7 @@ export default function Signup() {
         const valid = validateInput(formData)
         if(valid) {
             try {
-                let res = await axios.post(`http://localhost:5000/api/signup`, {
+                let res = await axios.post(`${config.endpoint}/api/signup`, {
                     name:formData.name,
                     location:formData.location,
                     email:formData.email,

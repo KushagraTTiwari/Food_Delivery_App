@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { config } from "../App";
 
 const CartContext = createContext();
 
@@ -11,7 +12,7 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/cart/${userId}`);
+        const response = await axios.get(`${config.endpoint}/cart/${userId}`);
         setCartLength(response.data.items.length)
       } catch (err) {
         console.error('Failed to fetch cart items', err);
