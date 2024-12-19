@@ -50,11 +50,11 @@ code {
 
 .login {
   position: relative;
-  background-color: rgba(226, 174, 174, 0.8); /* Optional: Adds a translucent background to the form */
+  background-color: #060202cc; /* Optional: Adds a translucent background to the form */
   padding: 20px;
   border: 1px solid black;
   border-radius: 30px;
-  color: black;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,11 +108,11 @@ code {
 
 .signup {
   position: relative;
-  background-color: rgba(226, 174, 174, 0.8); /* Optional: Adds a translucent background to the form */
+  background-color: #060202cc; /* Optional: Adds a translucent background to the form */
   padding: 20px;
   border: 1px solid black;
   border-radius: 30px;
-  color: black;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;

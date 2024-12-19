@@ -15,7 +15,7 @@ import Cart from './componenets/Cart.js';
 import Checkout from './screens/Checkout.js';
 
 export const config = {
-  endpoint: `https://food-delivery-app-v4va.onrender.com`,
+  endpoint: `http://localhost:5000`,
 };
 
 

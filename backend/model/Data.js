@@ -7,6 +7,6 @@ const dataSchema = new mongoose.Schema({
     // Add any other fields based on your collection structure
 });
 
-const Data = mongoose.model('Data', dataSchema);
+const Data = mongoose.model('Datas', dataSchema);
 
 module.exports = Data;
