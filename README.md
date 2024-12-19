@@ -83,5 +83,5 @@ Make sure you have the following installed:
 
 
 ## Contact
-For any inquiries, reach out at: [Email](mailto:kushagratiwari6162@gmail.com).
+For any inquiries, reach out at: kushagratiwari811@gmail.com
 
